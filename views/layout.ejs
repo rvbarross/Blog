@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Minha Página</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    </head>
-    <body>
-        <div>
-            <div>
-                <%- body %>
-            </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/myblog.css" />
+</head>
+
+<body>
+    <div>
+        <div class="container">
+
+            <%- include('partials/header.ejs') %>
+
+                <main class="container">
+
+                    <%- include('partials/big-news.ejs') %>
+
+                    <div class="row mb-2">
+                        
+                            <%- include('partials/hot-news.ejs') %>
+                        
+                    </div>
+
+                    <div class="row g-5">
+                        <div class="col-md-8">
+                            <%- body %>
+                        </div>
+                        <div class="col-md-4">
+                            <%- include('partials/right-menu.ejs') %>
+                        </div>
+                    </div>
+
+                </main>
+
         </div>
-        <script src="/public/js/bootstrap.bundle.min.js"></script>
-    </body>
+    </div>
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

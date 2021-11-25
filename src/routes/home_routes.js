@@ -2,27 +2,26 @@ const express = require('express')
 const router = express.Router()
 const AccountRepository = require('../repository/AccountRepository')
 const repository = new AccountRepository()
-const bcrypt = require('bcrypt')
 const passport = require('passport')
+const bcrypt = require('bcrypt')
 
-router.get('/', (_, res) => {
-    res.render('pages/home')
+router.get('/', (req, res) => {
+    res.render('pages/home', { user: req.user })
 })
 
-router.get('/signin', (_, res) => {
-    res.render('pages/signin')
+router.get('/signin', (req, res) => {
+    res.render('pages/signin', { user: req.user, error: req.flash('error')[0], values: null })
 })
 
-router.post('/signin', (req, res) => {
-    passport.authenticate('local', {
+router.post('/signin', passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/signin',
         failureFlash: true
     })
-})
+)
 
-router.get('/signup', (_, res) => {
-    res.render('pages/signup', { error: null, values: null})
+router.get('/signup', (req, res) => {
+    res.render('pages/signup', { user: req.user, error: null, values: null })
 })
 
 router.post('/signup', async (req, res) => {
@@ -39,7 +38,7 @@ router.post('/signup', async (req, res) => {
                     password: hash
                 }
                 repository.insert(account)
-                res.render('pages/signup-ok')
+                res.render('pages/signup-ok', { user: req.user })
 
             })
         } else {
@@ -51,7 +50,7 @@ router.post('/signup', async (req, res) => {
                 password: password,
                 passwordConfirmation: passwordConfirmation
             }
-            res.render('pages/signup', { error: error, values: values})
+            res.render('pages/signup', { user: req.user, error: error, values: values })
         }
     } else {
         let error = {
@@ -62,7 +61,7 @@ router.post('/signup', async (req, res) => {
             password: password,
             passwordConfirmation: passwordConfirmation
         }
-        res.render('pages/signup', { error: error, values: values})
+        res.render('pages/signup', { user: req.user, error: error, values: values })
     }
     
 })

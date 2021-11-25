@@ -29,7 +29,7 @@ class AccountRepository {
     }
 
     findByUsername(username){
-        return Account.findAll( { where: { username: username } } )
+        return Account.findAll( { where: { username: username } })
     }
 }
 

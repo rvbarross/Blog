@@ -55,7 +55,7 @@ passport.serializeUser((user, done) => {
 })
 passport.deserializeUser(async (obj, done) => {
     let repository = new AccountRepository()
-    let account = await repository.find(obj.id)
+    let account = await repository.findById(obj.id)
 
     return done(null, account)
 })

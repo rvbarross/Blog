@@ -24,6 +24,10 @@ class CategoryRepository {
         return Category.findByPk(id)
     }
 
+    findByName(name){
+        return Category.findAll({ where: { name: name } })
+    }
+
     findAll(){
         return Category.findAll()
     }

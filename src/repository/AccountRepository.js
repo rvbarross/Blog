@@ -20,7 +20,7 @@ class AccountRepository {
         jane.destroy();
     }
 
-    find(id){
+    findById(id){
         return Account.findByPk(id)
     }
 

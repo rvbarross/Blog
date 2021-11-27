@@ -1,0 +1,33 @@
+<form method="post" action="<%=option.url %>">
+    <h1 class="h3 mb-3 fw-normal"><%=option.formName %></h1>
+    <% if(error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%=error.message %>
+        </div>
+    <% } %>
+    <div class="form-floating">
+        <% if(option.category) { %>
+            <input type="hidden" class="form-control" id="floatingInput" placeholder="Name" name="id" value="<%=option.category.id %>">
+        <% } else { %>
+            <input type="hidden" class="form-control" id="floatingInput" placeholder="Name" name="id">
+        <% } %>        
+    </div>
+    <div class="form-floating">
+        <% if(option.category) { %>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="name" value="<%=option.category.name %>">
+        <% } else { %>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="name">
+        <% } %>  
+      <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating">
+        <% if(option.category) { %>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Description" name="description" value="<%=option.category.description %>">
+        <% } else { %>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Description" name="description">
+        <% } %>
+      <label for="floatingInput">Description</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit"><%=option.buttonName %></button>
+
+</form>

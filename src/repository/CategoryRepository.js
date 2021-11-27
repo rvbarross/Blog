@@ -7,16 +7,16 @@ class CategoryRepository {
         return category
     }
     
-    async update(category){
-        return Category.update({...obj}, { where: { id: category.id } })
+    async update(obj){
+        return Category.update({...obj}, { where: { id: obj.id } })
         // const jane = await User.findByPk(user.id)
         // jane.name = user.name
         // jane.email = user.email
         // jane.save()
     }
 
-    async delete(category){
-        const jane = await Category.findByPk(category.id)
+    async delete(id){
+        const jane = await Category.findByPk(id)
         jane.destroy();
     }
 

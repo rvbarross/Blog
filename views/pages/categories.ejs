@@ -17,9 +17,21 @@
                         <th scope="row"><%=category.id %></th>
                         <td><%=category.name %></td>
                         <td><%=category.description %></td>
-                        <td>@mdo</td>
+                        <td>
+                            <a href="/dashboard/categories/edit/<%=category.id %>" class="btn btn-primary">Edit</a>
+                            <a href="" onclick="removeCategory(<%=category.id %>)" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                     <% })%>
             </tbody>
         </table>
     </main>
+    <script>
+        function removeCategory(id){
+            if(confirm("Do you want to remove the chosen category?")){
+                fetch(`/dashboard/categories/remove/${id}`, {
+                method: "POST"})
+                .then((res) =>{document.location.reload()})
+            }   
+        }
+    </script>

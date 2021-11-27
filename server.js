@@ -83,6 +83,6 @@ app.use(passport.session());
 app.use('/', routes)
 
 app.listen(port, async () =>{
-    await sequelize.sync({ force: true })
+    await sequelize.sync({ force: false })
     console.log("Server Up Baby!!");
 })
